@@ -42,7 +42,6 @@ MTparam.marker_positions = marker_positions;
 
 %% Plot MT config
 figure;
-% verbose = true;
 plotparam = struct;
 plotMT(MTparam.x_coords,MTparam.marker_positions,MTparam,plotparam)
 
@@ -51,11 +50,10 @@ plotMT(MTparam.x_coords,MTparam.marker_positions,MTparam,plotparam)
 %% Plotting Code
 plotParam = struct();
 plotParam.fontsize = 15;
-plotParam.linspace = 100;
 %%
 figure
+% Plotting filament configuration. 
 subplot(5,1,1)
-
 plotMT(x_coords,marker_positions,MTparam,param)
 
 title(sprintf('Bias = %g, D = %g, v = %g, ka = %g, kd = %g', ...
@@ -69,49 +67,47 @@ hold(ax, 'on')
 set(ax,'defaultTextInterpreter','latex','TickLabelInterpreter','latex','FontSize',plotParam.fontsize)
 xlim([MTparam.domain(1) MTparam.domain(2)])
 
+% Ploting cargo densities
 subplot(5,1,2)
 hold on
 plot(singleContInfo.bounds, singleContInfo.distrib, '-', 'MarkerSize', 20,'LineWidth',2);
-% legend_entries = sprintf('Bias = %.2f', param.bias);
 xlim([MTparam.domain(1) MTparam.domain(2)])
 
-% legend(legend_entries, 'Location', 'Best','FontSize',10); 
-ylabel('Cargo Density', 'Interpreter','latex','FontSize',plotParam.fontsize)
+ylabel('$\rho(x)$', 'Interpreter','latex','FontSize',plotParam.fontsize)
 ax = gca;
 hold(ax, 'on')
 set(ax,'defaultTextInterpreter','latex','TickLabelInterpreter','latex','FontSize',plotParam.fontsize)
 
+% Plotting energy landscape
 subplot(5,1,3)
 % plot(NodeLocations, Energies, 'LineWidth', 2, 'LineStyle','-')
 plot(singleContInfo.bounds, singleContInfo.energy, '-','LineWidth', 2)
 
 xlim([MTparam.domain(1) MTparam.domain(2)])
 
-ylabel('Energy ', 'Interpreter','latex','FontSize',plotParam.fontsize)
+ylabel('$\epsilon (x)$ ', 'Interpreter','latex','FontSize',plotParam.fontsize)
 
 ax = gca;
 hold(ax, 'on')
 set(ax,'defaultTextInterpreter','latex','TickLabelInterpreter','latex','FontSize',plotParam.fontsize)
 
-
+%Plotting Effective Diffusivity
 subplot(5,1,4)
 
 stairs(singleLayerInfo.bounds, [singleLayerInfo.Deff;singleLayerInfo.Deff(end)],'LineWidth', 2)
 yline(param.D, 'LineWidth', 2, 'LineStyle','--', 'Color','k');
 
-set(gcf,'Color','w')
 xlim([MTparam.domain(1) MTparam.domain(2)])
-ylabel('Effective Diffusivity ', 'Interpreter','latex','FontSize',plotParam.fontsize)
+ylabel('$D_{\mathrm{eff}}$ ', 'Interpreter','latex','FontSize',plotParam.fontsize)
 ax = gca;
 hold(ax, 'on')
 set(ax,'defaultTextInterpreter','latex','TickLabelInterpreter','latex','FontSize',plotParam.fontsize)
 
+% Plotting Effective Velocity
 subplot(5,1,5)
-
 stairs(singleLayerInfo.bounds, [singleLayerInfo.Veff;singleLayerInfo.Veff(end)] ,'LineWidth', 2);
-set(gcf,'Color','w')
 xlim([MTparam.domain(1) MTparam.domain(2)])
-ylabel('Effective Velocity ', 'Interpreter','latex','FontSize',plotParam.fontsize)
+ylabel('$v_{\mathrm{eff}}$', 'Interpreter','latex','FontSize',plotParam.fontsize)
 ax = gca;
 hold(ax, 'on')
 set(ax,'defaultTextInterpreter','latex','TickLabelInterpreter','latex','FontSize',plotParam.fontsize)
