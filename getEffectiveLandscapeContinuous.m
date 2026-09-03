@@ -111,7 +111,7 @@ if any(cellfun(@(x) x(1) > x(2), x_coords))
     error('Please double check your notation for the x_coords. First number within each cell should be smaller than the second one')
 end
 %% Obtain Relevant Filament information
-[~,allbounds,MTpos,plusdir,mindir,nMTdomain,nMTplus] = getConfigWallsModified(x_coords,marker_positions,MTparam.snaptol);
+[~,allbounds,MTpos,plusdir,mindir,nMTdomain,nMTplus,nMTminus] = getConfigWallsModified(x_coords,marker_positions,MTparam.snaptol);
 %% Check for User input error
 
 if isempty(MTparam.domain)
@@ -128,7 +128,7 @@ end
 
 %% Obtain effective velocities and effective diffusivities
 %[vels, Deff] = GetEffectiveVelocityAndDiffusivityBiased(param.D,param.v,param.ka,param.kd, param.bias, nMTdomain,MTdomain, plusdir, mindir);
-[vels, Deff] = GetEffectiveVelocityAndDiffusivityBiased(param.D,param.v,param.ka,param.kd, param.bias, nMTdomain,nMTplus);
+[vels, Deff] = GetEffectiveVelocityAndDiffusivityBiased(param.D,param.v,param.ka,param.kd, param.bias, nMTdomain,nMTplus,nMTminus);
 %% Account for the 0 MT regions at domain ends. 
 allbounds = [MTparam_in.domain(1);allbounds; MTparam_in.domain(2)];
 nMTdomain = [0; nMTdomain; 0];
