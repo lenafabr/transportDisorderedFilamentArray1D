@@ -42,7 +42,7 @@ function pgroup = localizationSims(param_in,MTparam_in,pgroup)
 % MTpos and plusdir are both sorted based on the left-hand coord of each MT
 nMT = length(MTparam_in.x_coords);
 [~,allbounds,MTpos,plusdir,~,nMTdomain,MTdomain,MTstartbound,MTendbound] = ...
-    getConfigWallsModified_fullnosort(MTparam_in.x_coords,MTparam_in.marker_positions,MTparam_in.snaptol,MTparam_in.domain);
+    getConfigWallsModified_full(MTparam_in.x_coords,MTparam_in.marker_positions,MTparam_in.snaptol,MTparam_in.domain);
 %% set up convenient arrays to store information about the regions
 
 % MTbound = MT that particles can attach to, at that given region
