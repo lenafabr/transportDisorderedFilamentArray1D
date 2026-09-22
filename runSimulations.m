@@ -42,7 +42,7 @@ param.dtscale = 1E-2;
 % param.dtscale = 2;
 
 % save times for particle positions
-param.savetimes = linspace(0,1e5,1e4);
+param.savetimes = linspace(0,1e2,1e4);
 % param.savetimes = linspace(0,1e4,1e2);
 
 % how much info to print out
