@@ -128,7 +128,7 @@ IPR = exp(logIPR);
 % cut off the regions corresponding to a single MT length on either size
 cutind = interp1(allbounds,1:nbound,[MTpos(1,2),MTpos(end,1)],'nearest');
 % TODO: ADJUST USEIND APPROPRIATELY
-useind = cutind(1)+1:cutind(2)-2; 
+useind = cutind(1):cutind(2)-1;
 if isempty(useind)
     %warning('Unable to calculate InvIPRcut, No valid MT indices after removing 1 MT from the ends.')
     IPRcut = NaN;
